@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient("api", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5085/api/");
+    client.BaseAddress = new Uri("http://localhost:5085/api/");
 });
 
 builder.Services.AddScoped<ITaskRepository, TaskService>();
@@ -23,7 +23,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
@@ -32,7 +32,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Task}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
