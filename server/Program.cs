@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Middleware;
 using server.Repositories;
 using server.Services;
 
@@ -23,10 +24,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
 app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.Run();
